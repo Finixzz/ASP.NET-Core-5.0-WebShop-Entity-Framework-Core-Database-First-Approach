@@ -1,6 +1,12 @@
+using DAL;
+using DAL.Models;
+using DAL.ServiceInterfaces;
+using DAL.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +29,14 @@ namespace WebShop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContextPool<WebShopSampleContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("conn")));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<WebShopSampleContext>();
+
+            services.AddScoped<ICategorySQLRepository, CategorySQLRepository>();
+
             services.AddControllersWithViews();
         }
 

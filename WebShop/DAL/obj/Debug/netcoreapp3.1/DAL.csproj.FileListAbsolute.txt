@@ -1,0 +1,12 @@
+C:\Users\450G6\source\repos\ASP.NET-Core-5.0-WebShop-Entity-Framework-Core-Database-First-Approach\WebShop\DAL\bin\Debug\netcoreapp3.1\DAL.deps.json
+C:\Users\450G6\source\repos\ASP.NET-Core-5.0-WebShop-Entity-Framework-Core-Database-First-Approach\WebShop\DAL\bin\Debug\netcoreapp3.1\DAL.runtimeconfig.json
+C:\Users\450G6\source\repos\ASP.NET-Core-5.0-WebShop-Entity-Framework-Core-Database-First-Approach\WebShop\DAL\bin\Debug\netcoreapp3.1\DAL.runtimeconfig.dev.json
+C:\Users\450G6\source\repos\ASP.NET-Core-5.0-WebShop-Entity-Framework-Core-Database-First-Approach\WebShop\DAL\bin\Debug\netcoreapp3.1\DAL.dll
+C:\Users\450G6\source\repos\ASP.NET-Core-5.0-WebShop-Entity-Framework-Core-Database-First-Approach\WebShop\DAL\bin\Debug\netcoreapp3.1\DAL.pdb
+C:\Users\450G6\source\repos\ASP.NET-Core-5.0-WebShop-Entity-Framework-Core-Database-First-Approach\WebShop\DAL\obj\Debug\netcoreapp3.1\DAL.csprojAssemblyReference.cache
+C:\Users\450G6\source\repos\ASP.NET-Core-5.0-WebShop-Entity-Framework-Core-Database-First-Approach\WebShop\DAL\obj\Debug\netcoreapp3.1\DAL.AssemblyInfoInputs.cache
+C:\Users\450G6\source\repos\ASP.NET-Core-5.0-WebShop-Entity-Framework-Core-Database-First-Approach\WebShop\DAL\obj\Debug\netcoreapp3.1\DAL.AssemblyInfo.cs
+C:\Users\450G6\source\repos\ASP.NET-Core-5.0-WebShop-Entity-Framework-Core-Database-First-Approach\WebShop\DAL\obj\Debug\netcoreapp3.1\DAL.csproj.CoreCompileInputs.cache
+C:\Users\450G6\source\repos\ASP.NET-Core-5.0-WebShop-Entity-Framework-Core-Database-First-Approach\WebShop\DAL\obj\Debug\netcoreapp3.1\DAL.dll
+C:\Users\450G6\source\repos\ASP.NET-Core-5.0-WebShop-Entity-Framework-Core-Database-First-Approach\WebShop\DAL\obj\Debug\netcoreapp3.1\DAL.pdb
+C:\Users\450G6\source\repos\ASP.NET-Core-5.0-WebShop-Entity-Framework-Core-Database-First-Approach\WebShop\DAL\obj\Debug\netcoreapp3.1\DAL.genruntimeconfig.cache
