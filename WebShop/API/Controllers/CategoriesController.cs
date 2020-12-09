@@ -6,6 +6,10 @@ using DAL.Services;
 using DAL.ServiceInterfaces;
 using System.Threading.Tasks;
 using DAL.Models;
+using Microsoft.AspNetCore.Identity;
+
+using DAL.Dtos.CategoryDTOS;
+using AutoMapper;
 
 namespace API.Controllers
 {
@@ -14,32 +18,48 @@ namespace API.Controllers
     public class CategoriesController : ControllerBase
     {
         private ICategorySQLRepository _categoryRepository;
+        private IMapper _mapper;
 
-        public CategoriesController(ICategorySQLRepository _categoryRepository)
+
+        public CategoriesController(ICategorySQLRepository _categoryRepository,
+                                    IMapper _mapper)
         {
             this._categoryRepository = _categoryRepository;
+            this._mapper = _mapper;
         }
 
+        /*
+            <summary>
+                   Returns all categories
+            </summary>
+            <remarks>
+            Sample request:
 
+                GET /api/categories
+           </remarks>
+           <response code="200">Returns product info if okay</response>
+        */
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
-
-            return Ok(await _categoryRepository.GetAllAsync());
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> AddCategory(Category category)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest();
-
-            Category newCategory = await _categoryRepository.SaveAsync(category);
-
-            return CreatedAtAction(nameof(newCategory), new { id = newCategory.CategoryId }, newCategory);
+            var categoryDTOs = _mapper.Map<IEnumerable<Category>, IEnumerable<CategoryDTO>>(await _categoryRepository.GetAllAsync());
+            return Ok(categoryDTOs);
         }
 
 
+        /*
+            <summary>
+                   Returns single product
+            </summary>
+            <remarks>
+            Sample request:
+
+                GET /api/categories/1
+
+           </remarks>
+           <response code="200">Returns category info if found</response>
+           <response code="404">If something goes wrong</response> 
+        */
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCategory(int id)
         {
@@ -48,35 +68,105 @@ namespace API.Controllers
             if (categoryInDb == null)
                 return NotFound();
 
-            return Ok(categoryInDb);
+            return Ok(_mapper.Map<Category, CategoryDTO>(categoryInDb));
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> EditCategory(Category category, int id)
+
+
+        /*
+             <summary>
+                    Creates category from raw JSON
+             </summary>
+             <remarks>
+                 Sample request:
+            
+                 POST /api/category
+                 {
+                    "name": "First category",
+                 }
+            </remarks>
+            <response code="201">Returns product info if okay</response>
+            <response code="400">If model state is not valid</response> 
+            <response code="500">If JSON object is not structured as sample request</response> 
+         */
+        [HttpPost]
+        public async Task<IActionResult> AddCategory(CategoryDTO categoryDTO)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            Category catInDb = await _categoryRepository.GetByIdAsync(id);
+            Category newCategory = await _categoryRepository.SaveAsync(_mapper.Map<CategoryDTO, Category>(categoryDTO));
 
-            if (catInDb == null)
-                return NotFound();
+            categoryDTO.CategoryId = newCategory.CategoryId;
 
-            await _categoryRepository.EditAsync(category, id);
-
-            return Ok(category);
+            return CreatedAtAction(nameof(categoryDTO), new { id = categoryDTO.CategoryId }, categoryDTO);
         }
 
+
+        /*
+             <summary>
+                    Edits existing category data from raw JSON
+             </summary>
+             <remarks>
+                 Sample request:
+            
+                 PUT /api/category/1
+                 {
+                    "name": "First category name edit",
+                  }
+            </remarks>
+            <response code="200">Returns updated category info if okay</response>
+            <response code="400">If model state is not valid</response> 
+            <response code="404">If category doesen't exist in database</response>
+            
+         */
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditCategory(CategoryDTO categoryDTO, int id)
+        {
+           
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            Category categoryInDb = await _categoryRepository.GetByIdAsync(id);
+
+            if (categoryInDb == null)
+                return NotFound();
+
+            categoryDTO.CategoryId = id;
+
+            _mapper.Map(categoryDTO, categoryInDb);
+
+            categoryDTO=_mapper.Map<Category,CategoryDTO>(await _categoryRepository.EditAsync(categoryInDb, categoryInDb.CategoryId));
+
+            return Ok(categoryDTO);
+        }
+
+
+        /*
+             <summary>
+                    Deletes existing category in database
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 DELETE /api/category/1
+                 
+            </remarks>
+            <response code="200">Returns deleted product</response>
+            <response code="400">If category doesen't exist in database</response>
+         */
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            Category catInDb = await _categoryRepository.GetByIdAsync(id);
-            if (catInDb == null)
+            Category categoryInDb = await _categoryRepository.GetByIdAsync(id);
+            if (categoryInDb == null)
                 return NotFound();
 
-            catInDb = await _categoryRepository.DeleteAsync(id);
-            return Ok(catInDb);
+            await _categoryRepository.DeleteAsync(id);
+
+            return Ok(_mapper.Map<Category,CategoryDTO>(categoryInDb));
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -6,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace DAL.Models
 {
-    public partial class WebShopSampleContext : DbContext
+    public partial class WebShopSampleContext : IdentityDbContext<IdentityUser>
     {
 
         public WebShopSampleContext(DbContextOptions<WebShopSampleContext> options)
@@ -14,13 +16,7 @@ namespace DAL.Models
         {
         }
 
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
-        public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; }
+       
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Dbaudit> Dbaudits { get; set; }
@@ -40,6 +36,8 @@ namespace DAL.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<AspNetRole>(entity =>
             {
                 entity.HasIndex(e => e.NormalizedName, "RoleNameIndex")
@@ -50,6 +48,10 @@ namespace DAL.Models
 
                 entity.Property(e => e.NormalizedName).HasMaxLength(256);
             });
+            modelBuilder.Entity<AspNetRole>().HasData(
+                    new AspNetRole() {Id= "6bee684a-5daf-4f40-83a8-4b2037caed9f", Name ="Admin",NormalizedName="ADMIN"},
+                    new AspNetRole() {Id= "2e4f0db4-f034-485e-aaae-5df20a4e1fdb", Name ="User",NormalizedName="USER"}
+                );
 
             modelBuilder.Entity<AspNetRoleClaim>(entity =>
             {

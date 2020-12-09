@@ -76,3 +76,4 @@ C:\Users\450G6\source\repos\ASP.NET-Core-5.0-WebShop-Entity-Framework-Core-Datab
 C:\Users\450G6\source\repos\ASP.NET-Core-5.0-WebShop-Entity-Framework-Core-Database-First-Approach\WebShop\WebShop\bin\Debug\net5.0\API.dll
 C:\Users\450G6\source\repos\ASP.NET-Core-5.0-WebShop-Entity-Framework-Core-Database-First-Approach\WebShop\WebShop\bin\Debug\net5.0\API.pdb
 C:\Users\450G6\source\repos\ASP.NET-Core-5.0-WebShop-Entity-Framework-Core-Database-First-Approach\WebShop\WebShop\obj\Debug\net5.0\WebShop.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\450G6\source\repos\ASP.NET-Core-5.0-WebShop-Entity-Framework-Core-Database-First-Approach\WebShop\WebShop\bin\Debug\net5.0\AutoMapper.dll
