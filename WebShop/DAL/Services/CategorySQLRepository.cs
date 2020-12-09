@@ -33,7 +33,7 @@ namespace DAL.Services
             catInDb.Name = category.Name;
             catInDb.DateModified = DateTime.Now;
             await _appDbContext.SaveChangesAsync();
-            return category;
+            return catInDb;
         }
 
         public async Task<IEnumerable<Category>> GetAllAsync()

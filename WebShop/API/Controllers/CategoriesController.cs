@@ -37,10 +37,10 @@ namespace API.Controllers
 
                 GET /api/categories
            </remarks>
-           <response code="200">Returns product info if okay</response>
+           <response code="200">Returns category info if okay</response>
         */
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<IActionResult> GetAllCategoriesAsync()
         {
             var categoryDTOs = _mapper.Map<IEnumerable<Category>, IEnumerable<CategoryDTO>>(await _categoryRepository.GetAllAsync());
             return Ok(categoryDTOs);
@@ -61,7 +61,7 @@ namespace API.Controllers
            <response code="404">If something goes wrong</response> 
         */
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCategory(int id)
+        public async Task<IActionResult> GetCategoryByIdAsync(int id)
         {
             Category categoryInDb = await _categoryRepository.GetByIdAsync(id);
 
@@ -85,12 +85,12 @@ namespace API.Controllers
                     "name": "First category",
                  }
             </remarks>
-            <response code="201">Returns product info if okay</response>
+            <response code="201">Returns category info if okay</response>
             <response code="400">If model state is not valid</response> 
             <response code="500">If JSON object is not structured as sample request</response> 
          */
         [HttpPost]
-        public async Task<IActionResult> AddCategory(CategoryDTO categoryDTO)
+        public async Task<IActionResult> SaveCategoryAsync(CategoryDTO categoryDTO)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
@@ -122,7 +122,7 @@ namespace API.Controllers
          */
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditCategory(CategoryDTO categoryDTO, int id)
+        public async Task<IActionResult> EditCategoryAsync(CategoryDTO categoryDTO, int id)
         {
            
             if (!ModelState.IsValid)
@@ -133,11 +133,10 @@ namespace API.Controllers
             if (categoryInDb == null)
                 return NotFound();
 
-            categoryDTO.CategoryId = id;
-
+            categoryDTO.CategoryId=id;
             _mapper.Map(categoryDTO, categoryInDb);
 
-            categoryDTO=_mapper.Map<Category,CategoryDTO>(await _categoryRepository.EditAsync(categoryInDb, categoryInDb.CategoryId));
+            categoryDTO=_mapper.Map<Category,CategoryDTO>(await _categoryRepository.EditAsync(categoryInDb, id));
 
             return Ok(categoryDTO);
         }
@@ -153,12 +152,15 @@ namespace API.Controllers
                  DELETE /api/category/1
                  
             </remarks>
-            <response code="200">Returns deleted product</response>
+            <response code="200">Returns deleted category</response>
             <response code="400">If category doesen't exist in database</response>
+            <response code="500">If category we want to delete is referenced 
+                by another subcategory (ON DELETE NO ACTION)      
+            </response>
          */
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCategory(int id)
+        public async Task<IActionResult> DeleteCategoryAsync(int id)
         {
             Category categoryInDb = await _categoryRepository.GetByIdAsync(id);
             if (categoryInDb == null)

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DAL.Dtos.CategoryDTOS;
+using DAL.Dtos.SubCategoryDTOS;
 using DAL.Models;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace DAL.Dtos
         public MappingProfile()
         {
             CreateMap<Category, CategoryDTO>().ReverseMap();
+            CreateMap<SubCategory, SubCategoryDTO>().ReverseMap();
         }
     }
 }
