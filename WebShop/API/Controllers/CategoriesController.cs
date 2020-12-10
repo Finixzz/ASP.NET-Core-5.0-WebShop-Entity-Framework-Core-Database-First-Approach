@@ -112,11 +112,13 @@ namespace API.Controllers
             
                  PUT /api/category/1
                  {
+                    "categoryId":1,
                     "name": "First category name edit",
                   }
             </remarks>
             <response code="200">Returns updated category info if okay</response>
-            <response code="400">If model state is not valid</response> 
+            <response code="400">If model state is not valid or supplied category URI id doesen't match 
+            categoryId that is provided in json object</response> 
             <response code="404">If category doesen't exist in database</response>
             
          */
@@ -125,7 +127,7 @@ namespace API.Controllers
         public async Task<IActionResult> EditCategoryAsync(CategoryDTO categoryDTO, int id)
         {
            
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid ||(categoryDTO.CategoryId!=id))
                 return BadRequest();
 
             Category categoryInDb = await _categoryRepository.GetByIdAsync(id);
@@ -133,7 +135,7 @@ namespace API.Controllers
             if (categoryInDb == null)
                 return NotFound();
 
-            categoryDTO.CategoryId=id;
+            
             _mapper.Map(categoryDTO, categoryInDb);
 
             categoryDTO=_mapper.Map<Category,CategoryDTO>(await _categoryRepository.EditAsync(categoryInDb, id));

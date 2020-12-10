@@ -77,7 +77,7 @@ namespace API.Controllers
 
         /*
             <summary>
-                Creates category from raw JSON
+                Creates subcategory from raw JSON
             </summary>
             <remarks>
                 Sample request:
@@ -121,12 +121,14 @@ namespace API.Controllers
 
                 PUT /api/subcategory/1
                 {
+                  "subCategoryId":1,
                   "categoryId":1,
                   "name":"first category name edit"
                 }
             </remarks>
             <response code="200">Returns updated category info if okay</response>
-            <response code="400">If model state is not valid</response> 
+            <response code="400">If model state is not valid or supplied subcategory URI id doesen't match 
+            subCategoryId that is provided in json object</response> 
             <response code="404">If subcategory doesen't exist in database</response>
             <response code="500">If referential integrity is violated
             eg. If you provide categoryId that is not present in category table</response> 
@@ -135,7 +137,7 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> EditSubCategoryAsync(SubCategoryDTO subCategoryDTO, int id)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || (subCategoryDTO.SubCategoryId!=id))
                 return BadRequest();
 
             SubCategory subCategoryInDb = await _subCategoryRepository.GetByIdAsync(id);
@@ -143,7 +145,6 @@ namespace API.Controllers
             if (subCategoryInDb == null)
                 return NotFound();
 
-            subCategoryDTO.SubCategoryId = id;
             _mapper.Map(subCategoryDTO, subCategoryInDb);
 
             subCategoryDTO = _mapper.Map<SubCategory, SubCategoryDTO>(await _subCategoryRepository.EditAsync(subCategoryInDb, id));
