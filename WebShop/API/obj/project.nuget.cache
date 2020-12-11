@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KR/iKD4AI96ffkzaireFcV5aoPwNFV7usOqJehBwlgqAW51KJ9b5P97pA4EaTaUu2SDvXgaxxuX9IU7o4FpPoA==",
+  "dgSpecHash": "l7kktW0rjW/n0JhF0ADjK7VISnBt5a9ki+WIf2DBqLNMqu0J1ddEUXHqZfd55XVc1Zi6q2SdHdKX/Q9lrH5T+w==",
   "success": true,
   "projectFilePath": "C:\\Users\\450G6\\source\\repos\\ASP.NET-Core-5.0-WebShop-Entity-Framework-Core-Database-First-Approach\\WebShop\\API\\API.csproj",
   "expectedPackageFiles": [
@@ -129,7 +129,8 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\450G6\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
   ],
   "logs": []
 }

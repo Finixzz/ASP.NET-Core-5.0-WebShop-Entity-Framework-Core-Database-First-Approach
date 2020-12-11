@@ -82,7 +82,7 @@ namespace API.Controllers
             <remarks>
                 Sample request:
 
-                POST /api/subcategory
+                POST /api/subcategories
                 {
                     "categoryId":1,
                     "name":"First subcategory"
@@ -119,7 +119,7 @@ namespace API.Controllers
             <remarks>
                 Sample request:
 
-                PUT /api/subcategory/1
+                PUT /api/subcategories/1
                 {
                   "subCategoryId":1,
                   "categoryId":1,
@@ -127,7 +127,7 @@ namespace API.Controllers
                 }
             </remarks>
             <response code="200">Returns updated category info if okay</response>
-            <response code="400">If model state is not valid or supplied subcategory URI id doesen't match 
+            <response code="400">If model state is not valid or supplied  URI id doesen't match 
             subCategoryId that is provided in json object</response> 
             <response code="404">If subcategory doesen't exist in database</response>
             <response code="500">If referential integrity is violated
@@ -154,12 +154,12 @@ namespace API.Controllers
 
         /*
            <summary>
-                  Deletes existing subcategory in database
+                  Deletes existing subcategory from database
            </summary>
            <remarks>
            Sample request:
 
-               DELETE /api/subcategory/1
+               DELETE /api/subcategories/1
 
           </remarks>
           <response code="200">Returns deleted subcategory</response>

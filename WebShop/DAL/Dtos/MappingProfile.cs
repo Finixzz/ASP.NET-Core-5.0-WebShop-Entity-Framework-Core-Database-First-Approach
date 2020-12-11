@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DAL.Dtos.CategoryDTOS;
+using DAL.Dtos.ItemBrandDTOS;
 using DAL.Dtos.SubCategoryDTOS;
 using DAL.Models;
 using System;
@@ -14,6 +15,7 @@ namespace DAL.Dtos
         {
             CreateMap<Category, CategoryDTO>().ReverseMap();
             CreateMap<SubCategory, SubCategoryDTO>().ReverseMap();
+            CreateMap<ItemBrand, ItemBrandDTO>().ReverseMap();
         }
     }
 }

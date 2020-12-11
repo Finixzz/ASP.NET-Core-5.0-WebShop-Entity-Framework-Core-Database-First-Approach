@@ -80,7 +80,7 @@ namespace API.Controllers
              <remarks>
                  Sample request:
             
-                 POST /api/category
+                 POST /api/categories
                  {
                     "name": "First category",
                  }
@@ -110,14 +110,14 @@ namespace API.Controllers
              <remarks>
                  Sample request:
             
-                 PUT /api/category/1
+                 PUT /api/categories/1
                  {
                     "categoryId":1,
                     "name": "First category name edit",
                   }
             </remarks>
             <response code="200">Returns updated category info if okay</response>
-            <response code="400">If model state is not valid or supplied category URI id doesen't match 
+            <response code="400">If model state is not valid or supplied URI id doesen't match 
             categoryId that is provided in json object</response> 
             <response code="404">If category doesen't exist in database</response>
             
@@ -146,12 +146,12 @@ namespace API.Controllers
 
         /*
              <summary>
-                    Deletes existing category in database
+                    Deletes existing category from database
              </summary>
              <remarks>
              Sample request:
             
-                 DELETE /api/category/1
+                 DELETE /api/categories/1
                  
             </remarks>
             <response code="200">Returns deleted category</response>
