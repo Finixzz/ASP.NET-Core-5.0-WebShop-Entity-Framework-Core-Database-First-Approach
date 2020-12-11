@@ -154,19 +154,13 @@ namespace API.Controllers
 
           </remarks>
           <response code="200">Returns deleted itembrand</response>
-          <response code="400">If itembrand doesen't exist in database</response>
-          <response code="500">If itembrand we want to delete is referenced 
-              by Item (ON DELETE NO ACTION)      
+          <response code="500"> If itembrand doesen't exist in database or itembrand 
+                       we want to delete is referenced by Item (ON DELETE NO ACTION)      
           </response>
        */
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteItemBrandAsync(int id)
         {
-            ItemBrand itemBrandInDb = await _itemBrandRepository.GetByIdAsync(id);
-
-            if (itemBrandInDb == null)
-                return NotFound();
-
             return Ok(_mapper.Map<ItemBrand, ItemBrandDTO>(await _itemBrandRepository.DeleteAsync(id)));
         }
     }

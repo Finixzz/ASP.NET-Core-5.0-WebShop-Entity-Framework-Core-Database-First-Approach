@@ -156,7 +156,7 @@ namespace API.Controllers
             </remarks>
             <response code="200">Returns deleted category</response>
             <response code="400">If category doesen't exist in database</response>
-            <response code="500">If category we want to delete is referenced 
+            <response code="500">If category doesen't exist in database or category we want to delete is referenced 
                 by another subcategory (ON DELETE NO ACTION)      
             </response>
          */
@@ -164,13 +164,7 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategoryAsync(int id)
         {
-            Category categoryInDb = await _categoryRepository.GetByIdAsync(id);
-            if (categoryInDb == null)
-                return NotFound();
-
-            await _categoryRepository.DeleteAsync(id);
-
-            return Ok(_mapper.Map<Category,CategoryDTO>(categoryInDb));
+            return Ok(_mapper.Map<Category,CategoryDTO>(await _categoryRepository.DeleteAsync(id)));
         }
     }
 }

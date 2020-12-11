@@ -163,16 +163,11 @@ namespace API.Controllers
 
           </remarks>
           <response code="200">Returns deleted subcategory</response>
-          <response code="400">If subcategory doesen't exist in database</response>
+          <response code="500">If subcategory doesen't exist in database</response>
        */
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSubCategoryAsync(int id)
         {
-            SubCategory subCategoryInDb = await _subCategoryRepository.GetByIdAsync(id);
-
-            if (subCategoryInDb == null)
-                return NotFound();
-
             return Ok(_mapper.Map<SubCategory, SubCategoryDTO>(await _subCategoryRepository.DeleteAsync(id)));
         }
     }
