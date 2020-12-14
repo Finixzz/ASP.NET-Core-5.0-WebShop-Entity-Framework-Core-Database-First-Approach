@@ -1,4 +1,5 @@
-﻿using DAL.Models;
+﻿
+using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +9,7 @@ namespace DAL.ServiceInterfaces
 {
     public interface IItemBrandSQLRepository
     {
+        
         Task<IEnumerable<ItemBrand>> GetAllAsync();
         Task<ItemBrand> GetByIdAsync(int id);
         Task<ItemBrand> SaveAsync(ItemBrand itemBrand);
@@ -15,5 +17,6 @@ namespace DAL.ServiceInterfaces
         Task<ItemBrand> EditAsync(ItemBrand itemBrand, int id);
 
         Task<ItemBrand> DeleteAsync(int id);
+        
     }
 }

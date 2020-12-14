@@ -63,9 +63,7 @@ namespace API.Controllers
             </summary>
             <remarks>
             Sample request:
-
                 GET /api/items/1
-
            </remarks>
            <response code="200">Returns item info if found</response>
            <response code="404">If something goes wrong</response> 
@@ -78,7 +76,7 @@ namespace API.Controllers
             if (itemInDb == null)
                 return NotFound();
 
-            return Ok(_mapper.Map<Item,ItemDTO>(itemInDb));
+            return Ok(_mapper.Map<Item, ItemDTO>(itemInDb));
         }
 
 
@@ -173,9 +171,7 @@ namespace API.Controllers
            </summary>
            <remarks>
            Sample request:
-
                DELETE /api/items/1
-
           </remarks>
           <response code="200">Returns deleted item</response>
           <response code="500">If item doesen't exist in database</response>
@@ -186,4 +182,5 @@ namespace API.Controllers
             return Ok(_mapper.Map<Item, ItemDTO>(await _itemRepository.DeleteAsync(id)));
         }
     }
+
 }

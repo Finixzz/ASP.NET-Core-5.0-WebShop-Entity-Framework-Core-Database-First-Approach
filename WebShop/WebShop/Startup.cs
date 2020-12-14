@@ -1,5 +1,5 @@
+
 using AutoMapper;
-using DAL;
 using DAL.Dtos;
 using DAL.Models;
 using DAL.ServiceInterfaces;
@@ -37,6 +37,7 @@ namespace WebShop
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<WebShopSampleContext>();
 
+            
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
@@ -49,6 +50,8 @@ namespace WebShop
             services.AddScoped<ISubCategorySQLRepository, SubCategorySQLRepository>();
             services.AddScoped<IItemBrandSQLRepository, ItemBrandSQLRepository>();
             services.AddScoped<IItemSQLRepository, ItemSQLRepository>();
+            services.AddScoped<IDiscountSQLRepository, DiscountSQLRepository>();
+            
 
             services.AddControllersWithViews();
         }

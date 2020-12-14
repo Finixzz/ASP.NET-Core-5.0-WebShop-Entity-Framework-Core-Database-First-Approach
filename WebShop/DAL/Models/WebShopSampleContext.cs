@@ -12,7 +12,7 @@ namespace DAL.Models
     {
 
         public WebShopSampleContext(DbContextOptions<WebShopSampleContext> options)
-            : base(options)
+              : base(options)
         {
         }
 
@@ -33,31 +33,23 @@ namespace DAL.Models
         public virtual DbSet<SubCategory> SubCategories { get; set; }
         public virtual DbSet<Town> Towns { get; set; }
 
+     
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
             modelBuilder.Entity<AspNetRole>(entity =>
             {
-                entity.HasIndex(e => e.NormalizedName, "RoleNameIndex")
-                    .IsUnique()
-                    .HasFilter("([NormalizedName] IS NOT NULL)");
-
                 entity.Property(e => e.Name).HasMaxLength(256);
 
                 entity.Property(e => e.NormalizedName).HasMaxLength(256);
             });
-            modelBuilder.Entity<AspNetRole>().HasData(
-                    new AspNetRole() {Id= "6bee684a-5daf-4f40-83a8-4b2037caed9f", Name ="Admin",NormalizedName="ADMIN"},
-                    new AspNetRole() {Id= "2e4f0db4-f034-485e-aaae-5df20a4e1fdb", Name ="User",NormalizedName="USER"}
-                );
 
             modelBuilder.Entity<AspNetRoleClaim>(entity =>
             {
-                entity.HasIndex(e => e.RoleId, "IX_AspNetRoleClaims_RoleId");
-
-                entity.Property(e => e.RoleId).IsRequired();
+                entity.Property(e => e.RoleId)
+                    .IsRequired()
+                    .HasMaxLength(450);
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.AspNetRoleClaims)
@@ -66,12 +58,6 @@ namespace DAL.Models
 
             modelBuilder.Entity<AspNetUser>(entity =>
             {
-                entity.HasIndex(e => e.NormalizedEmail, "EmailIndex");
-
-                entity.HasIndex(e => e.NormalizedUserName, "UserNameIndex")
-                    .IsUnique()
-                    .HasFilter("([NormalizedUserName] IS NOT NULL)");
-
                 entity.Property(e => e.Email).HasMaxLength(256);
 
                 entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
@@ -83,9 +69,9 @@ namespace DAL.Models
 
             modelBuilder.Entity<AspNetUserClaim>(entity =>
             {
-                entity.HasIndex(e => e.UserId, "IX_AspNetUserClaims_UserId");
-
-                entity.Property(e => e.UserId).IsRequired();
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasMaxLength(450);
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.AspNetUserClaims)
@@ -96,9 +82,9 @@ namespace DAL.Models
             {
                 entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
 
-                entity.HasIndex(e => e.UserId, "IX_AspNetUserLogins_UserId");
-
-                entity.Property(e => e.UserId).IsRequired();
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasMaxLength(450);
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.AspNetUserLogins)
@@ -108,8 +94,6 @@ namespace DAL.Models
             modelBuilder.Entity<AspNetUserRole>(entity =>
             {
                 entity.HasKey(e => new { e.UserId, e.RoleId });
-
-                entity.HasIndex(e => e.RoleId, "IX_AspNetUserRoles_RoleId");
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.AspNetUserRoles)
@@ -181,8 +165,6 @@ namespace DAL.Models
             modelBuilder.Entity<Discount>(entity =>
             {
                 entity.ToTable("Discount");
-
-                entity.Property(e => e.DiscountId).ValueGeneratedNever();
 
                 entity.Property(e => e.DateAdded).HasColumnType("datetime");
 

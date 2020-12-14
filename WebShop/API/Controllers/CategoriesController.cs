@@ -5,11 +5,12 @@ using System.Text;
 using DAL.Services;
 using DAL.ServiceInterfaces;
 using System.Threading.Tasks;
-using DAL.Models;
+
 using Microsoft.AspNetCore.Identity;
 
 using DAL.Dtos.CategoryDTOS;
 using AutoMapper;
+using DAL.Models;
 
 namespace API.Controllers
 {
@@ -34,7 +35,6 @@ namespace API.Controllers
             </summary>
             <remarks>
             Sample request:
-
                 GET /api/categories
            </remarks>
            <response code="200">Returns category info if okay</response>
@@ -53,9 +53,7 @@ namespace API.Controllers
             </summary>
             <remarks>
             Sample request:
-
                 GET /api/categories/1
-
            </remarks>
            <response code="200">Returns category info if found</response>
            <response code="404">If something goes wrong</response> 
@@ -126,8 +124,8 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> EditCategoryAsync(CategoryDTO categoryDTO, int id)
         {
-           
-            if (!ModelState.IsValid ||(categoryDTO.CategoryId!=id))
+
+            if (!ModelState.IsValid || (categoryDTO.CategoryId != id))
                 return BadRequest();
 
             Category categoryInDb = await _categoryRepository.GetByIdAsync(id);
@@ -135,10 +133,10 @@ namespace API.Controllers
             if (categoryInDb == null)
                 return NotFound();
 
-            
+
             _mapper.Map(categoryDTO, categoryInDb);
 
-            categoryDTO=_mapper.Map<Category,CategoryDTO>(await _categoryRepository.EditAsync(categoryInDb, id));
+            categoryDTO = _mapper.Map<Category, CategoryDTO>(await _categoryRepository.EditAsync(categoryInDb, id));
 
             return Ok(categoryDTO);
         }
@@ -164,7 +162,8 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategoryAsync(int id)
         {
-            return Ok(_mapper.Map<Category,CategoryDTO>(await _categoryRepository.DeleteAsync(id)));
+            return Ok(_mapper.Map<Category, CategoryDTO>(await _categoryRepository.DeleteAsync(id)));
         }
     }
+
 }

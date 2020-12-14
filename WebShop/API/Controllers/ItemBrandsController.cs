@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
     public class ItemBrandsController : ControllerBase
@@ -32,7 +31,6 @@ namespace API.Controllers
             </summary>
             <remarks>
             Sample request:
-
                 GET /api/itembrands
            </remarks>
            <response code="200">Returns itembrands info if okay</response>
@@ -53,9 +51,7 @@ namespace API.Controllers
             </summary>
             <remarks>
             Sample request:
-
                 GET /api/itembrands/1
-
            </remarks>
            <response code="200">Returns itembrand info if found</response>
            <response code="404">If something goes wrong</response> 
@@ -125,7 +121,7 @@ namespace API.Controllers
             
          */
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditItemBrandAsync(ItemBrandDTO itemBrandDTO,int id)
+        public async Task<IActionResult> EditItemBrandAsync(ItemBrandDTO itemBrandDTO, int id)
         {
             if (!ModelState.IsValid || (itemBrandDTO.ItemBrandId != id))
                 return BadRequest();
@@ -149,9 +145,7 @@ namespace API.Controllers
            </summary>
            <remarks>
            Sample request:
-
                DELETE /api/itembrands/1
-
           </remarks>
           <response code="200">Returns deleted itembrand</response>
           <response code="500"> If itembrand doesen't exist in database or itembrand 
@@ -164,4 +158,6 @@ namespace API.Controllers
             return Ok(_mapper.Map<ItemBrand, ItemBrandDTO>(await _itemBrandRepository.DeleteAsync(id)));
         }
     }
+
+
 }

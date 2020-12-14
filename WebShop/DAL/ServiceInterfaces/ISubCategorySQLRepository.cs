@@ -1,4 +1,5 @@
-﻿using DAL.Models;
+﻿
+using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +9,7 @@ namespace DAL.ServiceInterfaces
 {
     public interface ISubCategorySQLRepository
     {
+        
         Task<IEnumerable<SubCategory>> GetAllAsync();
         Task<SubCategory> GetByIdAsync(int id);
 
@@ -16,5 +18,6 @@ namespace DAL.ServiceInterfaces
         Task<SubCategory> EditAsync(SubCategory subCategory, int id);
 
         Task<SubCategory> DeleteAsync(int id);
+        
     }
 }

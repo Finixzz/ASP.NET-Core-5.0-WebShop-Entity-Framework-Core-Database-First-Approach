@@ -11,6 +11,7 @@ namespace DAL.Services
 {
     public class ItemSQLRepository : IItemSQLRepository
     {
+        
         private WebShopSampleContext _appDbContext;
 
         public ItemSQLRepository(WebShopSampleContext _appDbContext)
@@ -58,5 +59,6 @@ namespace DAL.Services
             await _appDbContext.SaveChangesAsync();
             return item;
         }
+        
     }
 }

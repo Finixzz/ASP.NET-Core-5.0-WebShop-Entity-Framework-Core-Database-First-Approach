@@ -1,4 +1,5 @@
-﻿using DAL.Models;
+﻿
+using DAL.Models;
 using DAL.ServiceInterfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,6 +11,7 @@ namespace DAL.Services
 {
     public class ItemBrandSQLRepository : IItemBrandSQLRepository
     {
+        
         private WebShopSampleContext _appDbContext;
 
         public ItemBrandSQLRepository(WebShopSampleContext _appDbContext)
@@ -51,5 +53,6 @@ namespace DAL.Services
             await _appDbContext.SaveChangesAsync();
             return itemBrand;
         }
+        
     }
 }

@@ -9,6 +9,7 @@ namespace DAL.ServiceInterfaces
 {
     public interface IItemSQLRepository
     {
+        
         Task<PagedList<Item>> GetItemsAsync(OwnerParameters ownerParameters);
         Task<Item> GetByIdAsync(int id);
         Task<Item> SaveAsync(Item item);
@@ -16,5 +17,6 @@ namespace DAL.ServiceInterfaces
         Task<Item> EditAsync(Item item, int id);
 
         Task<Item> DeleteAsync(int id);
+        
     }
 }

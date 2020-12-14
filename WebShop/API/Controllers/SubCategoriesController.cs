@@ -30,7 +30,6 @@ namespace API.Controllers
             </summary>
             <remarks>
             Sample request:
-
                 GET /api/subcategories
            </remarks>
            <response code="200">Returns subcategory info if okay</response>
@@ -54,9 +53,7 @@ namespace API.Controllers
             </summary>
             <remarks>
             Sample request:
-
                 GET /api/subcategories/1
-
            </remarks>
            <response code="200">Returns subcategory info if found</response>
            <response code="404">If object not found</response> 
@@ -81,7 +78,6 @@ namespace API.Controllers
             </summary>
             <remarks>
                 Sample request:
-
                 POST /api/subcategories
                 {
                     "categoryId":1,
@@ -118,7 +114,6 @@ namespace API.Controllers
             </summary>
             <remarks>
                 Sample request:
-
                 PUT /api/subcategories/1
                 {
                   "subCategoryId":1,
@@ -132,12 +127,11 @@ namespace API.Controllers
             <response code="404">If subcategory doesen't exist in database</response>
             <response code="500">If referential integrity is violated
             eg. If you provide categoryId that is not present in category table</response> 
-
         */
         [HttpPut("{id}")]
         public async Task<IActionResult> EditSubCategoryAsync(SubCategoryDTO subCategoryDTO, int id)
         {
-            if (!ModelState.IsValid || (subCategoryDTO.SubCategoryId!=id))
+            if (!ModelState.IsValid || (subCategoryDTO.SubCategoryId != id))
                 return BadRequest();
 
             SubCategory subCategoryInDb = await _subCategoryRepository.GetByIdAsync(id);
@@ -158,9 +152,7 @@ namespace API.Controllers
            </summary>
            <remarks>
            Sample request:
-
                DELETE /api/subcategories/1
-
           </remarks>
           <response code="200">Returns deleted subcategory</response>
           <response code="500">If subcategory doesen't exist in database</response>
@@ -171,4 +163,5 @@ namespace API.Controllers
             return Ok(_mapper.Map<SubCategory, SubCategoryDTO>(await _subCategoryRepository.DeleteAsync(id)));
         }
     }
+
 }

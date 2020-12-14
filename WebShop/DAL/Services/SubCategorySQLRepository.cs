@@ -1,4 +1,5 @@
-﻿using DAL.Models;
+﻿
+using DAL.Models;
 using DAL.ServiceInterfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,6 +11,7 @@ namespace DAL.Services
 {
     public class SubCategorySQLRepository : ISubCategorySQLRepository
     {
+        
         private WebShopSampleContext _appDbContext;
 
         public SubCategorySQLRepository(WebShopSampleContext _appDbContext)
@@ -51,5 +53,6 @@ namespace DAL.Services
             await _appDbContext.SaveChangesAsync();
             return subCategory;
         }
+        
     }
 }
