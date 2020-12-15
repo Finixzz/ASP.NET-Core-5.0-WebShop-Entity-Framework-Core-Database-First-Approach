@@ -153,7 +153,6 @@ namespace API.Controllers
                  
             </remarks>
             <response code="200">Returns deleted category</response>
-            <response code="400">If category doesen't exist in database</response>
             <response code="500">If category doesen't exist in database or category we want to delete is referenced 
                 by another subcategory (ON DELETE NO ACTION)      
             </response>
