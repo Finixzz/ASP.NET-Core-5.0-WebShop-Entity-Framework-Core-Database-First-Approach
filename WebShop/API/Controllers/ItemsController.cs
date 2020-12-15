@@ -32,7 +32,7 @@ namespace API.Controllers
             </summary>
             <remarks>
             Sample request:
-                GET /api/items/pageNumber=1&pageSize=25
+                GET /api/items?pageNumber=1&pageSize=25
            </remarks>
            <response code="200">Returns items info if okay</response>
         */
