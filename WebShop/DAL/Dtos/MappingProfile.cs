@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DAL.Dtos.CategoryDTOS;
+using DAL.Dtos.CountryDTOS;
 using DAL.Dtos.DiscountDTOS;
 using DAL.Dtos.ItemBrandDTOS;
 using DAL.Dtos.ItemDiscountDTOS;
@@ -26,6 +27,7 @@ namespace DAL.Dtos
             CreateMap<Discount, DiscountDTO>().ReverseMap();
             CreateMap<ItemDiscount, ItemDiscountDTO>().ReverseMap();
             CreateMap<PayMethod, PayMethodDTO>().ReverseMap();
+            CreateMap<Country, CountryDTO>().ReverseMap();
         }
     }
 }

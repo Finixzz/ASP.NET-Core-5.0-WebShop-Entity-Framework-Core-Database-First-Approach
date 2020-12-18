@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace DAL.Dtos.PayMethodDTOS
+namespace DAL.Dtos.CountryDTOS
 {
-    public class PayMethodDTO
+    public class CountryDTO
     {
-        public int PayMethodId { get; set; }
+        public int CountryId { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string Name { get; set; }
     }
 }
