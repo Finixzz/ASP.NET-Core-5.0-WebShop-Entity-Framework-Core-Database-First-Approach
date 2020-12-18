@@ -52,6 +52,7 @@ namespace WebShop
             services.AddScoped<IItemSQLRepository, ItemSQLRepository>();
             services.AddScoped<IDiscountSQLRepository, DiscountSQLRepository>();
             services.AddScoped<IItemDiscountsSQLRepository, ItemDiscountSQLRepository>();
+            services.AddScoped<IPayMethodSQLRepository, PayMethodSQLRepository>();
             
 
             services.AddControllersWithViews();
