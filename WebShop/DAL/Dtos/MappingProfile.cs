@@ -8,6 +8,7 @@ using DAL.Dtos.ItemDTOS;
 using DAL.Dtos.PayMethodDTOS;
 using DAL.Dtos.ShipCostDTOS;
 using DAL.Dtos.SubCategoryDTOS;
+using DAL.Dtos.TownDTOS;
 using DAL.Helpers;
 using DAL.Models;
 using System;
@@ -30,6 +31,7 @@ namespace DAL.Dtos
             CreateMap<PayMethod, PayMethodDTO>().ReverseMap();
             CreateMap<Country, CountryDTO>().ReverseMap();
             CreateMap<ShipCost, ShipCostDTO>().ReverseMap();
+            CreateMap<Town, TownDTO>().ReverseMap();
         }
     }
 }

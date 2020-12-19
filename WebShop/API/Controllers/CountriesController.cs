@@ -153,7 +153,7 @@ namespace API.Controllers
             </remarks>
             <response code="200">Returns deleted country</response>
             <response code="500">If country doesen't exist in database or country we want to delete is referenced 
-                by another shipCost (ON DELETE NO ACTION)      
+                by ShipCost or Town table (ON DELETE NO ACTION)      
             </response>
          */
         [HttpDelete("{id}")]
