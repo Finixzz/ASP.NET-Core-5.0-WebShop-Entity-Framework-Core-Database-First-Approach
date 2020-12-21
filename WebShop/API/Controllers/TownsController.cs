@@ -34,10 +34,14 @@ namespace API.Controllers
                 GET /api/towns?countryId=1
            </remarks>
            <response code="200">Returns towns info if okay</response>
+           <response code="200">If countryId query parameter is not provided</response>
         */
         [HttpGet]
         public async Task<IActionResult> GetAllTownsByCountryId([FromQuery]int countryId)
         {
+            if (countryId == 0)
+                return BadRequest();
+
             var townDTOs = _mapper.Map<IEnumerable<Town>, IEnumerable<TownDTO>>
                                     (await _townRepository.GetAllByCountryIdAsync(countryId));
             return Ok(townDTOs);
