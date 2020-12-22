@@ -139,7 +139,7 @@ namespace API.Controllers
             <response code="200">Returns updated order header info if okay</response>
             <response code="400">If model state is not valid or supplied URI id doesen't match 
             orderHeaderId that is provided in json object</response> 
-            <response code="404">If item doesen't exist in database</response>
+            <response code="404">If order header doesen't exist in database</response>
             <response code="500">If JSON object is not structured as sample request
             or if referential integrity is violated eg. if supplied payMethodId or shipAddressId 
             doesen't exist in respective tables</response> 
@@ -165,19 +165,19 @@ namespace API.Controllers
 
 
         /*
-        <summary>
-               Deletes existing order header from database
-        </summary>
-        <remarks>
-        Sample request:
-            DELETE /api/items/1
-       </remarks>
-       <response code="200">Returns deleted order header</response>
-       <response code="500">If item doesen't exist in database or if referential integrity
-                        is violated eg. if orderHeaderId is referenced in orderDetails table
-                        (ON DELETE NO ACTION)
-        </response>
-    */
+            <summary>
+                   Deletes existing order header from database
+            </summary>
+            <remarks>
+            Sample request:
+                DELETE /api/orderheaders/1
+           </remarks>
+           <response code="200">Returns deleted order header</response>
+           <response code="500">If order header doesen't exist in database or if referential integrity
+                            is violated eg. if orderHeaderId is referenced in orderDetails table
+                            (ON DELETE NO ACTION)
+            </response>
+        */
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrderHeaderAsync(int id)
         {

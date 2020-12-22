@@ -5,6 +5,7 @@ using DAL.Dtos.DiscountDTOS;
 using DAL.Dtos.ItemBrandDTOS;
 using DAL.Dtos.ItemDiscountDTOS;
 using DAL.Dtos.ItemDTOS;
+using DAL.Dtos.OrderDetailDTOS;
 using DAL.Dtos.OrderHeaderDTOS;
 using DAL.Dtos.PayMethodDTOS;
 using DAL.Dtos.ShipAddressDTOS;
@@ -39,6 +40,8 @@ namespace DAL.Dtos
             CreateMap<OrderHeader, OrderHeaderDTO>().ReverseMap();
             CreateMap<OrderHeader, AddOrderHeaderDTO>().ReverseMap();
             CreateMap<OrderHeader, EditOrderHeaderDTO>().ReverseMap();
+
+            CreateMap<OrderDetail, OrderDetailDTO>().ReverseMap();
         }
     }
 }
