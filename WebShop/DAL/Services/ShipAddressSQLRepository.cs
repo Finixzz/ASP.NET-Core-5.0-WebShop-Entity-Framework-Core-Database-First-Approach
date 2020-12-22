@@ -31,6 +31,7 @@ namespace DAL.Services
             shipAdressInDb.TownId = shipAddress.TownId;
             shipAdressInDb.Street = shipAddress.Street;
             shipAdressInDb.StreetNumber = shipAddress.StreetNumber;
+            shipAdressInDb.DateModified = DateTime.Now;
             await _appDbContext.SaveChangesAsync();
             return shipAdressInDb;
         }

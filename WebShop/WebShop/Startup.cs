@@ -57,6 +57,7 @@ namespace WebShop
             services.AddScoped<IShipCostSQLRepository, ShipCostSQLRepository>();
             services.AddScoped<ITownSQLRepository, TownSQLRepository>();
             services.AddScoped<IShipAddressSQLRepository, ShipAddressSQLRepository>();
+            services.AddScoped<IOrderHeaderSQLRepository, OrderHeaderSQLRepository>();
 
             services.AddControllersWithViews();
         }

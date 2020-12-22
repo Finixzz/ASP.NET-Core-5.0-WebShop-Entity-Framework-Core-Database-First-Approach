@@ -16,12 +16,12 @@ namespace DAL.Services
         {
             this._appDbContext = _appDbContext;
         }
-        public async Task<IEnumerable<PayMethod>> GetAllAsync()
+        public async Task<IEnumerable<Models.PayMethod>> GetAllAsync()
         {
             return await _appDbContext.PayMethods.ToListAsync();
         }
 
-        public async Task<PayMethod> GetById(int id)
+        public async Task<Models.PayMethod> GetById(int id)
         {
             return await _appDbContext.PayMethods.SingleOrDefaultAsync(c => c.PayMethodId == id);
         }
