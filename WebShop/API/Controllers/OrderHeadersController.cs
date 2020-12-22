@@ -86,7 +86,7 @@ namespace API.Controllers
 
         /*
             <summary>
-                Creates item from raw JSON
+                Creates order header from raw JSON
             </summary>
             <remarks>
                 Sample request:
@@ -120,7 +120,7 @@ namespace API.Controllers
 
         /*
              <summary>
-                    Edits existing item data from raw JSON
+                    Edits existing order header data from raw JSON
              </summary>
              <remarks>
                  Sample request:
