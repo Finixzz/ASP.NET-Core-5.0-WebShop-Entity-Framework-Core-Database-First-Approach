@@ -2,6 +2,8 @@
 using AutoMapper;
 using DAL.Dtos;
 using DAL.Models;
+using DAL.ServiceFacadeInterfaces;
+using DAL.ServiceFacades;
 using DAL.ServiceInterfaces;
 using DAL.Services;
 using Microsoft.AspNetCore.Builder;
@@ -59,6 +61,9 @@ namespace WebShop
             services.AddScoped<IShipAddressSQLRepository, ShipAddressSQLRepository>();
             services.AddScoped<IOrderHeaderSQLRepository, OrderHeaderSQLRepository>();
             services.AddScoped<IOrderDetailSQLRepository, OrderDetailSQLRepository>();
+
+
+            services.AddScoped<IOrderFacade, OrderFacade>();
 
             services.AddControllersWithViews();
         }
